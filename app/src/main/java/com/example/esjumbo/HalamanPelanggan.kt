@@ -23,6 +23,11 @@ fun HalamanPelanggan() {
     var noHP by remember {
         mutableStateOf("")
     }
+
+    var alamat by remember {
+        mutableStateOf("")
+    }
+
     Column {
         OutlinedTextField(
             value = nama,
@@ -34,5 +39,11 @@ fun HalamanPelanggan() {
             onValueChange = {},
             label = { Text(text = "Nomor telpon")}
         )
+        OutlinedTextField(
+            value = alamat,
+            onValueChange = {},
+            label = { Text(text = "Alamat")}
+        )
+
     }
 }
