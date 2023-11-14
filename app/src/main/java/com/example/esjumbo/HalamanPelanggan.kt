@@ -3,6 +3,7 @@ package com.example.esjumbo
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -46,24 +47,32 @@ fun HalamanPelanggan() {
             .fillMaxSize()
             .background(Color.White)
     ) {
+        Text(text = stringResource(id = R.string.datapelanggan))
+        Spacer(modifier = Modifier.padding(vertical = dimensionResource(id = R.dimen.padding_large)))
         OutlinedTextField(
             value = nama,
             onValueChange = {},
-            label = { Text(text = "Nama")}
+            label = { Text(text = stringResource(id = R.string.nama))}
         )
         OutlinedTextField(
             value = noHP,
             onValueChange = {},
-            label = { Text(text = "Nomor telpon")}
+            label = { Text(text = stringResource(id = R.string.no_hp))}
         )
         OutlinedTextField(
             value = alamat,
             onValueChange = {},
-            label = { Text(text = "Alamat")}
+            label = { Text(text = stringResource(id = R.string.alamat))}
         )
         Spacer(modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_medium)))
-        Button(onClick = { /*TODO*/ }) {
-            Text(text = stringResource(id = R.string.submit))
+        Row {
+            Button(onClick = { /*TODO*/ }) {
+                Text(text = stringResource(id = R.string.cancel))
+            }
+            Spacer(modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.padding_large)))
+            Button(onClick = { /*TODO*/ }) {
+                Text(text = stringResource(id = R.string.selanjutnya))
+            }
         }
     }
 }
