@@ -27,37 +27,43 @@ import com.example.esjumbo.data.SumberData.flavors
 
 enum class PengelolaHalaman {
     Home,
+    DataPelanggan,
     Rasa,
     Summary
 }
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EsJumboAppBar(
-    bisaNavigasiBack : Boolean,
+    bisaNavigasiBack: Boolean,
     navigasiUp: () -> Unit,
     modifier: Modifier = Modifier
-){
+) {
     TopAppBar(
         title = { Text(stringResource(R.string.app_name)) },
         colors = TopAppBarDefaults.mediumTopAppBarColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer
         ),
         modifier = Modifier,
-        navigationIcon = {if (bisaNavigasiBack) (
-                IconButton(onClick = navigasiUp) {
-                    Icon(imageVector = Icons.Filled.ArrowBack,
-                        contentDescription = stringResource(R.string.back_button))
-                }
-                )
+        navigationIcon = {
+            if (bisaNavigasiBack) (
+                    IconButton(onClick = navigasiUp) {
+                        Icon(
+                            imageVector = Icons.Filled.ArrowBack,
+                            contentDescription = stringResource(R.string.back_button)
+                        )
+                    }
+                    )
         }
     )
 }
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EsJumboApp(
     viewModel: OrderViewModel = androidx.lifecycle.viewmodel.compose.viewModel(),
     navController: NavHostController = rememberNavController()
-){
+) {
     Scaffold(
         topBar = {
             EsJumboAppBar(bisaNavigasiBack = false, navigasiUp = { /*TODO*/ })
@@ -72,8 +78,16 @@ fun EsJumboApp(
             composable(route = PengelolaHalaman.Home.name) {
                 HalamanHome(
                     onNextButtonClicked = {
-                        navController.navigate(PengelolaHalaman.Rasa.name)
+                        navController.navigate(PengelolaHalaman.DataPelanggan.name)
                     }
+                )
+            }
+            composable(route = PengelolaHalaman.DataPelanggan.name) {
+                HalamanPelanggan(
+                    onSubmitButtonClicked = {
+                        navController.navigate(PengelolaHalaman.Rasa.name)
+                    },
+                    onBackButtonClicked = { cancelOrderAndNavigateToHome(viewModel, navController) }
                 )
             }
             composable(route = PengelolaHalaman.Rasa.name) {
@@ -84,10 +98,7 @@ fun EsJumboApp(
                     onConfirmButtonClicked = { viewModel.setJumlah(it) },
                     onNextButtonClicked = { navController.navigate(PengelolaHalaman.Summary.name) },
                     onCancelButtonClicked = {
-                        cancelOrderAndNavigateToHome(
-                            viewModel,
-                            navController
-                        )
+                        navController.popBackStack(PengelolaHalaman.DataPelanggan.name, false)
                     })
             }
             composable(route = PengelolaHalaman.Summary.name) {
@@ -98,6 +109,7 @@ fun EsJumboApp(
         }
     }
 }
+
 private fun cancelOrderAndNavigateToHome(
     viewModel: OrderViewModel,
     navController: NavHostController

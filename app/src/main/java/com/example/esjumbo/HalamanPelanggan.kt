@@ -55,28 +55,29 @@ fun HalamanPelanggan(
         Spacer(modifier = Modifier.padding(vertical = dimensionResource(id = R.dimen.padding_large)))
         OutlinedTextField(
             value = nama,
-            onValueChange = {},
+            onValueChange = {nama = it},
             label = { Text(text = stringResource(id = R.string.nama))}
         )
         Spacer(modifier = Modifier.padding(vertical = dimensionResource(id = R.dimen.padding_small)))
         OutlinedTextField(
             value = noHP,
-            onValueChange = {},
+            onValueChange = {noHP = it},
             label = { Text(text = stringResource(id = R.string.no_hp))}
         )
         Spacer(modifier = Modifier.padding(vertical = dimensionResource(id = R.dimen.padding_small)))
         OutlinedTextField(
             value = alamat,
-            onValueChange = {},
+            onValueChange = {alamat = it},
             label = { Text(text = stringResource(id = R.string.alamat))}
         )
         Spacer(modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_medium)))
         Row {
-            Button(onClick = {onSubmitButtonClicked}) {
+
+            Button(onClick = onBackButtonClicked) {
                 Text(text = stringResource(id = R.string.cancel))
             }
             Spacer(modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.padding_large)))
-            Button(onClick = onBackButtonClicked) {
+            Button(onClick = {onSubmitButtonClicked(listData)}) {
                 Text(text = stringResource(id = R.string.selanjutnya))
             }
         }
