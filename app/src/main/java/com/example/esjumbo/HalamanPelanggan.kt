@@ -25,9 +25,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview
 @Composable
-fun HalamanPelanggan() {
+fun HalamanPelanggan(
+    onSubmitButtonClicked: (MutableList<String>) -> Unit,
+    onBackButtonClicked: () -> Unit,
+) {
     var nama by rememberSaveable {
         mutableStateOf("")
     }
@@ -39,6 +41,8 @@ fun HalamanPelanggan() {
     var alamat by remember {
         mutableStateOf("")
     }
+
+    var listData: MutableList<String> = mutableListOf(nama, noHP, alamat)
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -68,11 +72,11 @@ fun HalamanPelanggan() {
         )
         Spacer(modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_medium)))
         Row {
-            Button(onClick = { /*TODO*/ }) {
+            Button(onClick = {onSubmitButtonClicked}) {
                 Text(text = stringResource(id = R.string.cancel))
             }
             Spacer(modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.padding_large)))
-            Button(onClick = { /*TODO*/ }) {
+            Button(onClick = onBackButtonClicked) {
                 Text(text = stringResource(id = R.string.selanjutnya))
             }
         }
