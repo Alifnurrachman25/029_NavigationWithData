@@ -85,6 +85,7 @@ fun EsJumboApp(
             composable(route = PengelolaHalaman.DataPelanggan.name) {
                 HalamanPelanggan(
                     onSubmitButtonClicked = {
+                        viewModel.setContact(it)
                         navController.navigate(PengelolaHalaman.Rasa.name)
                     },
                     onBackButtonClicked = { cancelOrderAndNavigateToHome(viewModel, navController) }
