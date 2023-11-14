@@ -54,11 +54,13 @@ fun HalamanPelanggan() {
             onValueChange = {},
             label = { Text(text = stringResource(id = R.string.nama))}
         )
+        Spacer(modifier = Modifier.padding(vertical = dimensionResource(id = R.dimen.padding_small)))
         OutlinedTextField(
             value = noHP,
             onValueChange = {},
             label = { Text(text = stringResource(id = R.string.no_hp))}
         )
+        Spacer(modifier = Modifier.padding(vertical = dimensionResource(id = R.dimen.padding_small)))
         OutlinedTextField(
             value = alamat,
             onValueChange = {},
